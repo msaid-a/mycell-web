@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Box, useColorModeValue, Flex } from "@chakra-ui/react";
+import { Text, Box, Flex } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGlobe,

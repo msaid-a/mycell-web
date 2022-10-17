@@ -13,12 +13,12 @@ import {
   FormControl,
   FormLabel,
   FormErrorMessage,
-  FormHelperText,
   Button,
   Input,
+  ModalCloseButton,
 } from "@chakra-ui/react";
 import { AppContextInterface, AppCtx } from "../../Contex";
-import { Field, Form, Formik, FieldAttributes, useFormik } from "formik";
+import { Field, Form, Formik, } from "formik";
 
 const PaketData = () => {
   const [data, setData] = React.useState<any[]>([]);
@@ -45,25 +45,6 @@ const PaketData = () => {
     setDetailPaket(data);
     onOpen();
   };
-
-  function validateName(value: string) {
-    let error;
-    if (!value) {
-      error = "Name is required";
-    } else if (value.toLowerCase() !== "naruto") {
-      error = "Jeez! You're not a fan 😱";
-    }
-    return error;
-  }
-
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-    },
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
-  });
 
   return (
     <div>
@@ -117,7 +98,8 @@ const PaketData = () => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent width={"90%"}>
-          <ModalHeader>{detailPaket?.nama}</ModalHeader>
+          <ModalCloseButton />
+          <ModalHeader textAlign={"center"}>{detailPaket?.nama}</ModalHeader>
           <ModalBody>
             <Formik
               initialValues={{
@@ -127,7 +109,7 @@ const PaketData = () => {
               }}
               onSubmit={(values, actions) => {
                 window.open(
-                  `https://api.whatsapp.com/send/?phone=6281218389762&text=No%20Handpone:%20${values.phone_number}%0ANama:%20${values.name}%0APaket:%20${detailPaket.nama}%0AHarga:%20${values.price}&type=phone_number&app_absent=0`
+                  `https://api.whatsapp.com/send/?phone=6281218389762&text=No%20Handpone:%20${values.phone_number}%0ANama:%20${values.name}%0APaket:%20${detailPaket.nama}%0AHarga:%20${detailPaket.harga}&type=phone_number&app_absent=0`
                 );
               }}
             >
@@ -137,7 +119,9 @@ const PaketData = () => {
                   <Form onSubmit={props.handleSubmit}>
                     <FormControl
                       isRequired
-                      isInvalid={props.errors.name ? true : false}
+                      isInvalid={
+                        props.touched.name && props.errors.name ? true : false
+                      }
                     >
                       <FormLabel>Masukan Nama</FormLabel>
                       <Field
@@ -156,12 +140,16 @@ const PaketData = () => {
                         }}
                       />
                       <FormErrorMessage color={"red"}>
-                        {props.errors.name}
+                        {props.touched.name && props.errors.name}
                       </FormErrorMessage>
                     </FormControl>
                     <FormControl
                       isRequired
-                      isInvalid={props.errors.phone_number ? true : false}
+                      isInvalid={
+                        props.touched.phone_number && props.errors.phone_number
+                          ? true
+                          : false
+                      }
                     >
                       <FormLabel>Masukan Nomor Hp</FormLabel>
                       <Field
@@ -184,19 +172,10 @@ const PaketData = () => {
                         }}
                       />
                       <FormErrorMessage color={"red"}>
-                        {props.errors.phone_number}
+                        {props.touched.phone_number && props.errors.phone_number}
                       </FormErrorMessage>
                     </FormControl>
-                    <FormControl defaultValue={detailPaket.harga}>
-                      <FormLabel>Harga</FormLabel>
-                      <Field
-                        as={Input}
-                        id="price"
-                        name="price"
-                        type="price"
-                        variant="filled"
-                      />
-                    </FormControl>
+                    <Text mt={5}>Total Harga: Rp. {detailPaket?.harga}</Text>
                     <Button
                       mt={5}
                       type="submit"
