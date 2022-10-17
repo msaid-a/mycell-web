@@ -57,7 +57,7 @@ const Pulsa = () => {
         mt={"3vh"}
         mb={10}
       >
-        Pulsa
+        E-Money
       </Text>
       <Formik
         initialValues={{

@@ -65,7 +65,7 @@ const PaketData = () => {
   };
 
   return (
-    <div>
+    <Box>
       <Text
         fontSize={24}
         textAlign={"center"}
@@ -80,11 +80,12 @@ const PaketData = () => {
         width={300}
         onChange={changeOperator}
         mb={2}
+        variant="filled"
       >
         <option value="axis">Axis</option>
         <option value="xl">XL</option>
         <option value="telkomsel">Telkomsel</option>
-        <option value="tri">Tri</option>
+        <option value="tri">3</option>
         <option value="smartfren">Smartfren</option>
         <option value="indosat">Indosat</option>
       </Select>
@@ -95,6 +96,7 @@ const PaketData = () => {
         mb={2}
         disabled={!operator}
         value={search}
+        variant="filled"
       />
       {data?.map((val) => (
         <Box
@@ -108,6 +110,7 @@ const PaketData = () => {
           borderRadius="lg"
           mb={5}
           onClick={() => handleOrder(val)}
+          background={"blackAlpha.100"}
         >
           <Text>{val.nama}</Text>
           <Text fontSize={14} fontWeight="bold">
@@ -142,7 +145,6 @@ const PaketData = () => {
               }}
             >
               {(props) => {
-                console.log(props);
                 return (
                   <Form onSubmit={props.handleSubmit}>
                     <FormControl
@@ -222,7 +224,7 @@ const PaketData = () => {
           <ModalFooter></ModalFooter>
         </ModalContent>
       </Modal>
-    </div>
+    </Box>
   );
 };
 

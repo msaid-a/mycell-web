@@ -97,7 +97,7 @@ const Pulsa = () => {
                   <option value="axis">Axis</option>
                   <option value="xl">XL</option>
                   <option value="telkomsel">Telkomsel</option>
-                  <option value="tri">Tri</option>
+                  <option value="tri">3</option>
                   <option value="smartfren">Smartfren</option>
                   <option value="indosat">Indosat</option>
                 </Field>
