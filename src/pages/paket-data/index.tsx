@@ -54,16 +54,14 @@ const PaketData = () => {
   };
 
   const findData = (e: any) => {
-    console.log(e.target.value);
     const result = dataFilter?.filter((elm) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       return elm.nama.toLocaleLowerCase().includes(e.target.value);
     });
-    console.log(result);
     if (result.length > 0) {
       setData(result);
-      setSearch(e.target.value);
     }
+    setSearch(e.target.value);
   };
 
   return (
