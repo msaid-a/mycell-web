@@ -19,6 +19,7 @@ import {
 } from "@chakra-ui/react";
 import { AppContextInterface, AppCtx } from "../../Contex";
 import { Field, Form, Formik } from "formik";
+import { ConvertCurrency } from "../../utils";
 
 const PaketData = () => {
   const [data, setData] = React.useState<any[]>([]);
@@ -53,14 +54,12 @@ const PaketData = () => {
   };
 
   const findData = (e: any) => {
-    console.log(e.target.value)
+    console.log(e.target.value);
     const result = dataFilter?.filter((elm) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      return (
-        elm.nama.toLocaleLowerCase().includes(e.target.value)
-      );
+      return elm.nama.toLocaleLowerCase().includes(e.target.value);
     });
-    console.log(result)
+    console.log(result);
     if (result.length > 0) {
       setData(result);
       setSearch(e.target.value);
@@ -114,7 +113,7 @@ const PaketData = () => {
         >
           <Text>{val.nama}</Text>
           <Text fontSize={14} fontWeight="bold">
-            Rp.{val.harga}
+             {ConvertCurrency(val.harga)}
           </Text>
           <Text
             textAlign={"right"}
@@ -207,7 +206,7 @@ const PaketData = () => {
                           props.errors.phone_number}
                       </FormErrorMessage>
                     </FormControl>
-                    <Text mt={5}>Total Harga: Rp. {detailPaket?.harga}</Text>
+                    <Text mt={5}>Total Harga:   {ConvertCurrency(detailPaket?.harga)}</Text>
                     <Button
                       mt={5}
                       type="submit"

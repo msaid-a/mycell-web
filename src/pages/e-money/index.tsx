@@ -9,8 +9,8 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { AppCtx } from "../../Contex";
-import { Field, Form, Formik, } from "formik";
-
+import { Field, Form, Formik } from "formik";
+import { ConvertCurrency } from "../../utils";
 const Pulsa = () => {
   const [data, setData] = React.useState<any[]>([]);
   const [totalPrice, setTotalPrice] = React.useState(0);
@@ -26,14 +26,14 @@ const Pulsa = () => {
       });
       if (result.length > 0) {
         setData(result);
-        setTotalPrice(result[0].harga)
+        setTotalPrice(result[0].harga);
       }
     }
     setOperator(e.target.value);
   };
 
   const handleTotalPrice = (e: any) => {
-      if (dataPaket) {
+    if (dataPaket) {
       const result = dataPaket?.filter((elm) => {
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         return (
@@ -179,13 +179,13 @@ const Pulsa = () => {
                   }}
                 >
                   {data.map((val) => (
-                    <option onClick={() => setTotalPrice(val.harga)}>
-                      {val.nama}
-                    </option>
+                    <option>{val.nama}</option>
                   ))}
                 </Field>
               </FormControl>
-              <Text mt={5}>Total Harga: Rp. {totalPrice} </Text>
+              <Text mt={5}>
+                Total Harga:   {ConvertCurrency(totalPrice)}{" "}
+              </Text>
               <Button mt={5} type="submit" colorScheme="purple" width="full">
                 Pesan
               </Button>

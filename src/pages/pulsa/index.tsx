@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { AppCtx } from "../../Contex";
 import { Field, Form, Formik, } from "formik";
+import { ConvertCurrency } from "../../utils";
 
 const Pulsa = () => {
   const [data, setData] = React.useState<any[]>([]);
@@ -187,7 +188,7 @@ const Pulsa = () => {
                   ))}
                 </Field>
               </FormControl>
-              <Text mt={5}>Total Harga: Rp. {totalPrice} </Text>
+              <Text mt={5}>Total Harga:   {ConvertCurrency(totalPrice)} </Text>
               <Button mt={5} type="submit" colorScheme="purple" width="full">
                 Pesan
               </Button>
