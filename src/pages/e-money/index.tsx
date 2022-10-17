@@ -54,7 +54,7 @@ const Pulsa = () => {
         fontSize={24}
         textAlign={"center"}
         fontWeight={600}
-        mt={"10vh"}
+        mt={"3vh"}
         mb={10}
       >
         Pulsa

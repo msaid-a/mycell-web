@@ -18,10 +18,13 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 import { AppContextInterface, AppCtx } from "../../Contex";
-import { Field, Form, Formik, } from "formik";
+import { Field, Form, Formik } from "formik";
 
 const PaketData = () => {
   const [data, setData] = React.useState<any[]>([]);
+  const [dataFilter, setDataFilter] = React.useState<any[]>([]);
+  const [operator, setOperator] = React.useState("");
+  const [search, setSearch] = React.useState("");
   const [detailPaket, setDetailPaket] = React.useState(
     {} as AppContextInterface
   );
@@ -37,6 +40,9 @@ const PaketData = () => {
       });
       if (result.length > 0) {
         setData(result);
+        setDataFilter(result);
+        setOperator(e.target.value);
+        setSearch("");
       }
     }
   };
@@ -46,20 +52,35 @@ const PaketData = () => {
     onOpen();
   };
 
+  const findData = (e: any) => {
+    console.log(e.target.value)
+    const result = dataFilter?.filter((elm) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      return (
+        elm.nama.toLocaleLowerCase().includes(e.target.value)
+      );
+    });
+    console.log(result)
+    if (result.length > 0) {
+      setData(result);
+      setSearch(e.target.value);
+    }
+  };
+
   return (
     <div>
       <Text
         fontSize={24}
         textAlign={"center"}
         fontWeight={600}
-        mt={"10vh"}
+        mt={"3vh"}
         mb={10}
       >
         Paket Data
       </Text>
       <Select
         placeholder="Pilih Operator"
-        width={220}
+        width={300}
         onChange={changeOperator}
         mb={2}
       >
@@ -70,9 +91,17 @@ const PaketData = () => {
         <option value="smartfren">Smartfren</option>
         <option value="indosat">Indosat</option>
       </Select>
+      <Input
+        placeholder="Cari Disini"
+        width={300}
+        onChange={findData}
+        mb={2}
+        disabled={!operator}
+        value={search}
+      />
       {data?.map((val) => (
         <Box
-          w={220}
+          w={300}
           shadow="lg"
           rounded={"lg"}
           p={6}
@@ -84,7 +113,9 @@ const PaketData = () => {
           onClick={() => handleOrder(val)}
         >
           <Text>{val.nama}</Text>
-          <Text fontSize={14}>Rp.{val.harga}</Text>
+          <Text fontSize={14} fontWeight="bold">
+            Rp.{val.harga}
+          </Text>
           <Text
             textAlign={"right"}
             color={"blue.400"}
@@ -172,7 +203,8 @@ const PaketData = () => {
                         }}
                       />
                       <FormErrorMessage color={"red"}>
-                        {props.touched.phone_number && props.errors.phone_number}
+                        {props.touched.phone_number &&
+                          props.errors.phone_number}
                       </FormErrorMessage>
                     </FormControl>
                     <Text mt={5}>Total Harga: Rp. {detailPaket?.harga}</Text>

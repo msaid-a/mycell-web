@@ -33,18 +33,18 @@ const HomePage: React.FC = () => {
         icon: faMoneyBill,
         path: "/e-money",
       },
-      {
-        type: "Game Online",
-        icon: faGamepad,
-        path: "/game-online",
-      },
+    //   {
+    //     type: "Game Online",
+    //     icon: faGamepad,
+    //     path: "/game-online",
+    //   },
     ],
     []
   );
 
   return (
     <div style={{ textAlign: "center" }}>
-      <Text fontSize={24} fontWeight={600} mt={"10vh"} mb={10}>
+      <Text fontSize={24} fontWeight={600} mt={"3vh"} mb={10}>
         My Cell
       </Text>
       {Type.map((val) => (

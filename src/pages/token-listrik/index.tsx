@@ -48,7 +48,7 @@ const Token = () => {
         fontSize={24}
         textAlign={"center"}
         fontWeight={600}
-        mt={"10vh"}
+        mt={"3vh"}
         mb={10}
       >
         Token Listrik
