@@ -68,7 +68,7 @@ const Pulsa = () => {
         }}
         onSubmit={(values, actions) => {
           window.open(
-            `https://api.whatsapp.com/send/?phone=6281218389762&text=No%20Handpone:%20${values.phone_number}%0AE-Money:%20${values.operator}%0ANama:%20${values.name}%0ANomimal%20Pulsa:%20${values.nominal}%0AHarga:%20${totalPrice}&type=phone_number&app_absent=0`
+            `https://api.whatsapp.com/send/?phone=6289678229992&text=No%20Handpone:%20${values.phone_number}%0AE-Money:%20${values.operator}%0ANama:%20${values.name}%0ANomimal%20Pulsa:%20${values.nominal}%0AHarga:%20${totalPrice}&type=phone_number&app_absent=0`
           );
         }}
       >

@@ -140,7 +140,7 @@ const PaketData = () => {
               }}
               onSubmit={(values, actions) => {
                 window.open(
-                  `https://api.whatsapp.com/send/?phone=6281218389762&text=No%20Handpone:%20${values.phone_number}%0ANama:%20${values.name}%0APaket:%20${detailPaket.nama}%0AHarga:%20${detailPaket.harga}&type=phone_number&app_absent=0`
+                  `https://api.whatsapp.com/send/?phone=6289678229992&text=No%20Handpone:%20${values.phone_number}%0ANama:%20${values.name}%0APaket:%20${detailPaket.nama}%0AHarga:%20${detailPaket.harga}&type=phone_number&app_absent=0`
                 );
               }}
             >
