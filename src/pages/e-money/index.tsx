@@ -29,6 +29,7 @@ const Pulsa = () => {
         setTotalPrice(result[0].harga);
       }
     }
+    console.log(e.target.value)
     setOperator(e.target.value);
   };
 
@@ -38,7 +39,7 @@ const Pulsa = () => {
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         return (
           elm.opertator === operator &&
-          elm.type === "pulsa" &&
+          elm.type === "e-money" &&
           elm.nama === e.target.value
         );
       });
